@@ -56,9 +56,11 @@ function Add_project({project_id,backend_url , set_ws_index,SetStep}) {
             console.log(data)  
             useEffect(()=>{
                 if (data) {
-                   
+                   if (data?.['stage'] == null) {
+                    set_ws_index(2.1)
+                   }
                 }
-                console.log()
+
             },[data])
 
             return (
