@@ -98,9 +98,12 @@ function Stages({backend_url,SetStep,set_ws_index , project_id , home_Update , s
 
     const [edit_task , set_edit_task] = useState()
 
+    
+
     useEffect(()=>{
         if (edit_task) {
             setTaskName(edit_task['name'])
+            set_showSteps(editTask['id'])
         }
     },[edit_task])
 
