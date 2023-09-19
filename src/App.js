@@ -8,7 +8,7 @@ import Cookies from 'universal-cookie' ;
 import jwt from 'jwt-decode' 
 
 // const backend_url = 'http://127.0.0.1:8000/'
-const backend_url = 'withcer.pythonanywhere.com/'
+const backend_url = 'https://withcer.pythonanywhere.com/'
 
 
 function App() {
