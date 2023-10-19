@@ -5,6 +5,7 @@ import Colors from '../elements/editing/Colors'
 import Adding_project from '../elements/adding/Adding_project'
 import Add_project from '../workspace/Add_project'
 import Stages from '../workspace/Stages'
+import ErrorPage from '../elements/ErrorPage'
 import axios from 'axios'
 function Home({backend_url}) {
 
@@ -13,7 +14,7 @@ function Home({backend_url}) {
         const [update , setUpdate] = useState(false)
             useEffect(()=>{
                 getData();
-            },[update])    
+            },[update])          
             let getData = async () => {
             
                 let respons = await fetch (`${backend_url}`)
@@ -111,8 +112,39 @@ function Home({backend_url}) {
             
             case 2.1 : 
                 workspace = <Stages home_Update={update} set_home_Update={setUpdate} SetStep={SetStep} set_ws_index={set_ws_index} backend_url={backend_url} project_id={project_id} />
+            break ;
+
+            case 404 : 
+                workspace = <ErrorPage />
+            break ;
+            }
+
+
+    // ---------- network connections -------------
+
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    function handleOnlineStatusChange() {
+      setIsOnline(navigator.onLine);
     }
 
+    window.addEventListener('online', handleOnlineStatusChange);
+    window.addEventListener('offline', handleOnlineStatusChange);
+
+    return () => {
+      window.removeEventListener('online', handleOnlineStatusChange);
+      window.removeEventListener('offline', handleOnlineStatusChange);
+    };
+  }, []);
+
+  useEffect(()=>{
+        if(!isOnline) {
+            set_ws_index(404)
+        }
+  },[isOnline])
+
+  console.log(isOnline)
 
 
     return (
@@ -121,6 +153,7 @@ function Home({backend_url}) {
             onMouseEnter={()=>set_side_hover(true)}
             onMouseLeave={()=>set_side_hover(false)}
         >
+            
             <div className='navbar spacebetween'>
                
                     <Adding_project backend_url={backend_url} update={update} setUpdate={setUpdate} />   

@@ -53,7 +53,7 @@ function Add_project({project_id,backend_url , set_ws_index,SetStep}) {
                     setUpdate(!update)
                 } 
             }
-            console.log(data)  
+
             useEffect(()=>{
                 if (data) {
                    if (data?.['stage'] == null) {

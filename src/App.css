@@ -517,6 +517,31 @@ body .Home .workspace .Stages .stageHeader .editproject input {
   border-radius: 20px;
   font-size: 20px;
 }
+body .Home .workspace .ErrorPage {
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+body .Home .workspace .ErrorPage .errormsg p {
+  font-size: 78px;
+  color: #A8B3C2;
+  margin-right: 40px;
+}
+body .Home .workspace .ErrorPage .er_msg {
+  color: #A8B3C2;
+  font-size: 24px;
+  margin: 20px 0;
+}
+body .Home .workspace .ErrorPage button {
+  border: 1px solid #A8B3C2;
+  border-radius: 20px;
+  padding: 10px 40px;
+}
+body .Home .workspace .ErrorPage button p {
+  color: #A8B3C2;
+  font-size: 28px;
+  margin-right: 30px;
+}
 body .Home .stageBox {
   width: 80%;
   align-items: flex-start;
