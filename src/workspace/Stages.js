@@ -396,7 +396,7 @@ const perc = (ob)=> {
                                                         <div className='prop'>
                                                             <p className='center' > {perc(oc['statistics'])} %</p>
                                                             <div className='center' >
-                                                                <img src={edit} onClick={() => set_edit_task(oc['task'])} />-
+                                                                <img src={edit} onClick={() => set_edit_task(oc['task'])} />
                                                                 <img src={trash} onClick={()=>Delete(oc['task']['id'],'task')} />
                                                                 <img src={plus} onClick={() => handleEditTask(oc['task']['id'])}  />
                                                             </div>
