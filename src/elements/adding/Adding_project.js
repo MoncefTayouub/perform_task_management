@@ -39,7 +39,7 @@ function Adding_project({backend_url ,setUpdate,update}) {
     <div className='Adding_project center'>   
         <div className='input spacebetween'>
             <input placeholder='Taking the next project' onKeyDown={(e)=>handleKeyDown(e)} onChange={(e)=>setProject(e.target.value)} value={project} />
-            <img src={plus} onClick={()=>handle_add_project()} />
+            <img src={plus} onClick={()=> handle_add_project()} />
         </div>
     </div>
   )

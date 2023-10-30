@@ -5,32 +5,53 @@ import trash from '../icons/trash.svg'
 function Add_project({project_id,backend_url , set_ws_index,SetStep}) {
 
     const [update , setUpdate] = useState(false)
+
+
+    const perc = (ob) => {
+
+        if (ob['done'] == 0 && ob['total'] == 0) {
+            return 0;
+        } else {
+
+            return parseInt(ob['done'] / ob['total'] * 100)
+        }
+    }
+
     const [data , setData] = useState()
-            useEffect(()=>{
-                getData();
-            },[update,project_id])    
-            let getData = async () => {
-            
-                let respons = await fetch (`${backend_url}project?data=${project_id}`)
-                let data = await respons.json()
-                setData(data)
-            
-            }
+    const [showSteps, set_showSteps] = useState(-1)
 
+    console.log(showSteps)
+    
+    useEffect(()=>{
+        getData();
+    },[update,project_id])    
+    let getData = async () => {
+    
+        let respons = await fetch (`${backend_url}project?data=${project_id}`)
+        let datacol = await respons.json()
+        setData(datacol)
+       
+        
+    }
 
-            const perc = (ob)=> {
-                
-                if (ob['done'] == 0 && ob['total'] == 0 ) {
-                    return 0 ;
-                }else {
-                    
-                    return parseInt(ob['done'] / ob['total'] * 100)
-                }
-            }
+    // const [firstTasl, set_firstTasl ] = useState(false)
+    // useEffect(()=>{
+    //     if (data && !firstTasl) {
+    //         console.log(data)
+    //         set_firstTasl(true)
+    //         data['stage']['tasks'].map((ob,i)=>{
+    //             console.log(i,ob)
+    //             if (perc(ob['statistics']) < 100 ) {
+    //                 set_showSteps(ob['task']['id']);
+    //                 return null 
+    //             }
+    //         })
+    //     }
+    // }, [firstTasl,data])
+
 
             // ---------------- show steps ----------------
 
-            const [showSteps , set_showSteps] = useState(-1)
 
             const handle_shwostesp = (id)=> {
                 if (showSteps == id) {

@@ -142,6 +142,8 @@ function Stages({backend_url,SetStep,set_ws_index , project_id , home_Update , s
         }
     }
 
+
+
     const editTask = (e)=> {
         if (taskName != '' && edit_task && e.key == 'Enter') {
 
@@ -173,10 +175,10 @@ function Stages({backend_url,SetStep,set_ws_index , project_id , home_Update , s
               data :  DataForm
           })
           .then((response)=>{
-                console.log(response.data) ;
+                // console.log(response.data) ;
                 setUpdate(!update)   
                 setStepName('')
-                setTask_id(-1)
+                // setTask_id(-1)
                 set_edit_step()
               
           }) .catch(function (error) {
@@ -275,15 +277,9 @@ const perc = (ob)=> {
                 handleStage(1)
             }
     }
-    useEffect(()=>{
-        if (data) {
+  
 
-            console.log(data['stages'].length)
-        }
 
-    },[data])
-
-    console.log(data)
 
 
     const Delete = async(id , table)=> {
@@ -322,6 +318,13 @@ const perc = (ob)=> {
         }else {
             set_showSteps(id)
         }
+    }
+
+    // ------------ handle edit task --------
+    const handleEditTask = (id)=> {
+        console.log(id,'---')
+        setTask_id(id)
+        set_showSteps(id)
     }
        
     return (
@@ -393,9 +396,9 @@ const perc = (ob)=> {
                                                         <div className='prop'>
                                                             <p className='center' > {perc(oc['statistics'])} %</p>
                                                             <div className='center' >
-                                                                <img src={edit} onClick={()=>set_edit_task(oc['task'])} />
+                                                                <img src={edit} onClick={() => set_edit_task(oc['task'])} />-
                                                                 <img src={trash} onClick={()=>Delete(oc['task']['id'],'task')} />
-                                                                <img src={plus} onClick={()=>setTask_id(oc['task']['id'])}  />
+                                                                <img src={plus} onClick={() => handleEditTask(oc['task']['id'])}  />
                                                             </div>
                                                         </div>
 

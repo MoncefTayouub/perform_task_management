@@ -15,7 +15,7 @@ function Home({backend_url}) {
             useEffect(()=>{
                 getData();
             },[update])          
-            let getData = async () => {
+            let getData = async () => { 
             
                 let respons = await fetch (`${backend_url}`)
                 let data = await respons.json()
@@ -71,7 +71,7 @@ function Home({backend_url}) {
               data :  DataForm
           })
           .then((response)=>{
-                console.log(response.data) ;
+                // console.log(response.data) ;
                 return 1 
               
           }) .catch(function (error) {
@@ -83,6 +83,7 @@ function Home({backend_url}) {
        
 
     
+    
     switch (ws_index) {   
         case 0 : 
             workspace = <div className='null center'>
@@ -91,16 +92,7 @@ function Home({backend_url}) {
                 style={{top : quote_dis_top == 0 ? 300 : quote_dis_top-10 }}  
                 className='edit_btn' 
                 onClick={()=>set_ws_index(0.1)}
-                />
-                <p ref = {quote_ref} >
-                    {
-                        data?.['general']['quote'] == '' ? 
-                         'the world belongs to the risk-takers , who bet on themselves when no one else will '
-                         : data?.['general']['quote']
-                        }
-                     
-                 </p>
-            </div> 
+                /> <p ref = {quote_ref} > { data?.['general']['quote'] == '' ? 'the world belongs to the risk-takers , who bet on themselves when no one else will ' : data?.['general']['quote'] } </p> </div> 
             break ;
             case 0.1 : 
                 workspace = <Colors update={update} setUpdate={setUpdate}  set_ws_index={set_ws_index} backend_url={backend_url} />
@@ -144,8 +136,8 @@ function Home({backend_url}) {
         }
   },[isOnline])
 
-  console.log(isOnline)
 
+  
 
     return (
     <div className='Home center'>
