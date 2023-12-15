@@ -20,7 +20,7 @@ function Add_project({project_id,backend_url , set_ws_index,SetStep}) {
     const [data , setData] = useState()
     const [showSteps, set_showSteps] = useState(-1)
 
-    console.log(showSteps)
+
     
     useEffect(()=>{
         getData();
@@ -83,7 +83,24 @@ function Add_project({project_id,backend_url , set_ws_index,SetStep}) {
                 }
 
             },[data])
+// console.log(data)
+// ---------- show first not complited task --------
 
+useEffect(()=>{
+    if (data && data?.['stage'] != null ) {
+        var found = 0 
+        data['stage']['tasks'].map((ob,i)=>{
+            if (!found ) {
+                var stat = perc(ob['statistics'])   
+                if (stat < 100) {
+                    set_showSteps(ob['task']['id'])
+                    found = 1
+                }
+
+            }
+        })
+    }
+},[data])
             return (
     <div className='Add_project'>
         <div className='spacebetween c90 the_top'>

@@ -136,8 +136,12 @@ function Home({backend_url}) {
         }
   },[isOnline])
 
+useEffect(()=>{
+    if (data) {
+        data['projects'] = data['projects'].reverse()   
+    }
+},[data])
 
-  
 
     return (
     <div className='Home center'>
@@ -158,7 +162,7 @@ function Home({backend_url}) {
                     </div>
                 )
             }
-           
+                 
 
         </div>
         <div className='workspace scrollingDiv'>
